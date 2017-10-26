@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Jetbrains CLion
+Comment=JetBrains CLion (c/c++ IDE)
+Icon=/opt/clion/bin/clion.png
+Exec={{ home }}/{{ command }}
+Terminal=false
+Type=Application

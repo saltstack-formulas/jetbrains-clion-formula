@@ -1,0 +1,12 @@
+clion:
+  jetbrains:
+    #Default edition is None (30 day trial)
+    edition: 
+  dl:
+    retries: 1
+    interval: 30
+  alt:
+    priority: 170
+  prefs:
+    user: undefined_user
+ 

@@ -1,0 +1,39 @@
+#Default Look Dictionary
+
+clion:
+  prefix: /usr/lib/jetbrains
+  tmpdir: /tmp/jetbrainstmp
+  symlink: /usr/bin/clion
+  symhome: /opt/jetbrains/clion
+  command: /bin/clion.sh
+  homes: /home
+  osflavour: linux
+
+  jetbrains:
+    #Default is CLion
+    product: CL 
+    edition:
+    uri: https://data.services.jetbrains.com/products/releases?latest=true&code=
+
+  dl:
+    archive_type: tar
+    opts: -s -L
+    interval: 60
+    retries: 1
+    source_url:
+    src_hashfile:
+    src_hashsum:
+    archive_name:
+    unpack_opts:
+
+  alt:
+    priority: 170
+    realhome: 
+    realcmd:
+
+  prefs:
+    user: undefined_user
+    importurl:
+    importdir:
+    myfile: clion-prefs.xml
+
