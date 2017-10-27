@@ -2,7 +2,7 @@
 clion
 ========
 
-Formula for latest CLion IDE from Jetbrains. 
+Formula for latest clion IDE from Jetbrains.
 
 .. note::
 
@@ -17,22 +17,25 @@ Available states
 
 ``clion``
 ------------
-
-Downloads the archive from Jetbrains website, unpacks locally and installs the IDE on the Operating System.  Places a environment profile in /etc/profile.d - this way the PATH is set correctly for all system users.
+Downloads the archive from Jetbrains website, unpacks locally and installs to the Operating System.
 
 .. note::
 
-This formula automatically installs latest Jetbrains release. This behaviour may be overridden in pillars.
-
-``clion.alternatives``
-------------
-Full support for debian alternatives in supported Linux distributions (i.e. not Archlinux, Windows, MacOS).
+This formula automatically installs latest Jetbrains release. This behaviour may be overridden by pillars.
 
 ``clion.developer``
 ------------
-Optionally get preferences file from url/share and place in 'user' (pillar) home directory for import.  Creates a Desktop shortcut on Linux and MacOS.
+Create Desktop shortcuts. Optionally retrieve setttings file from url/share and save to 'user' (pillar) home directory.
+
+
+``clion.linuxenv``
+------------
+On Linux, the PATH is set for all system users by adding software profile to /etc/profile.d/ directory. Full support for debian alternatives in supported Linux distributions (i.e. not Archlinux).
+
+.. note::
+
+The linux-alternatives 'priority' pillar value must be updated for each newly installed release/editions.
 
 
 Please see the pillar.example for configuration.
-
 Tested on Linux (Ubuntu, Fedora, Arch, and Suse), MacOS. Not verified on Windows OS.

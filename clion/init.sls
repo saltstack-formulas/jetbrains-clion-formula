@@ -5,16 +5,14 @@ clion-remove-prev-archive:
   file.absent:
     - name: '{{ clion.tmpdir }}/{{ clion.dl.archive_name }}'
     - require_in:
-      - clion-install-dir
+      - clion-extract-dirs
 
-clion-install-dir:
+clion-extract-dirs:
   file.directory:
     - names:
-      - '{{ clion.alt.realhome }}'
       - '{{ clion.tmpdir }}'
 {% if grains.os not in ('MacOS', 'Windows') %}
-      - '{{ clion.prefix }}'
-      - '{{ clion.symhome }}'
+      - '{{ clion.jetbrains.realhome }}'
     - user: root
     - group: root
     - mode: 755
@@ -31,19 +29,6 @@ clion-download-archive:
         attempts: {{ clion.dl.retries }}
         interval: {{ clion.dl.interval }}
       {% endif %}
-
-{% if grains.os not in ('MacOS') %}
-clion-unpacked-dir:
-  file.directory:
-    - name: '{{ clion.alt.realhome }}'
-    - user: root
-    - group: root
-    - mode: 755
-    - makedirs: True
-    - force: True
-    - onchanges:
-      - cmd: clion-download-archive
-{% endif %}
 
 {%- if clion.dl.src_hashsum %}
    # Check local archive using hashstring for older Salt / MacOS.
@@ -71,13 +56,14 @@ clion-package-install:
     - force: True
     - allow_untrusted: True
 {% else %}
+  # Linux
   archive.extracted:
     - source: 'file://{{ clion.tmpdir }}/{{ clion.dl.archive_name }}'
-    - name: '{{ clion.alt.realhome }}'
+    - name: '{{ clion.jetbrains.realhome }}'
     - archive_format: {{ clion.dl.archive_type }}
        {% if grains['saltversioninfo'] < [2016, 11, 0] %}
     - tar_options: {{ clion.dl.unpack_opts }}
-    - if_missing: '{{ clion.alt.realcmd }}'
+    - if_missing: '{{ clion.jetbrains.realcmd }}'
        {% else %}
     - options: {{ clion.dl.unpack_opts }}
        {% endif %}
@@ -95,36 +81,14 @@ clion-package-install:
 
 clion-remove-archive:
   file.absent:
-    - names:
-      # todo: maybe just delete the tmpdir itself
-      - '{{ clion.tmpdir }}/{{ clion.dl.archive_name }}'
-      - '{{ clion.tmpdir }}/{{ clion.dl.archive_name }}.sha256'
+    - name: '{{ clion.tmpdir }}'
     - onchanges:
 {%- if grains.os in ('Windows') %}
       - pkg: clion-package-install
 {%- elif grains.os in ('MacOS') %}
       - macpackage: clion-package-install
 {% else %}
+      #Unix
       - archive: clion-package-install
-
-clion-home-symlink:
-  file.symlink:
-    - name: '{{ clion.symhome }}'
-    - target: '{{ clion.alt.realhome }}'
-    - force: True
-    - onchanges:
-      - archive: clion-package-install
-
-# Update system profile with PATH
-clion-config:
-  file.managed:
-    - name: /etc/profile.d/clion.sh
-    - source: salt://clion/files/clion.sh
-    - template: jinja
-    - mode: 644
-    - user: root
-    - group: root
-    - context:
-      clion_home: '{{ clion.symhome }}'
 
 {% endif %}
