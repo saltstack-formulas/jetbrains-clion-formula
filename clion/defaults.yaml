@@ -12,7 +12,7 @@ clion:
     uri: https://data.services.jetbrains.com/products/releases?latest=true&code=
     #See https://www.jetbrains.com/help/clion/meet-clion.html
     #Default is clion
-    product: WS 
+    product: CL 
     edition:
 
   dl:
@@ -25,11 +25,12 @@ clion:
     src_hashsum:
 
   linux:
-    altpriority: 170
     symlink: /usr/bin/clion
+    #debian alternatives is disabled by default. Activated via pillar value.
+    altpriority: 0
 
   prefs:
-    user: undefined_user
+    user:
     #See https://www.jetbrains.com/help/clion/exporting-and-importing-settings.html
     jarurl:
     jardir:

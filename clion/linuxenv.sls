@@ -1,6 +1,6 @@
 {% from "clion/map.jinja" import clion with context %}
 
-{% if grains.os not in ('MacOS', 'Windows') %}
+{% if grains.os not in ('MacOS', 'Windows',) %}
 
 clion-home-symlink:
   file.symlink:
@@ -22,7 +22,8 @@ clion-config:
       home: '{{ clion.jetbrains.home }}/clion'
 
   # Debian alternatives
-  {% if grains.os_family not in ('Arch') %}
+  {% if clion.linux.altpriority > 0 %}
+     {% if grains.os_family not in ('Arch',) %}
 
 # Add clion-home to alternatives system
 clion-home-alt-install:
@@ -57,6 +58,7 @@ clion-alt-set:
     - onchanges:
       - alternatives: clion-alt-install
 
+      {% endif %}
   {% endif %}
 
 {% endif %}

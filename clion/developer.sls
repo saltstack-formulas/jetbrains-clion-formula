@@ -1,6 +1,6 @@
 {% from "clion/map.jinja" import clion with context %}
 
-{% if clion.prefs.user not in (None, 'undfined', 'undefined_user') %}
+{% if clion.prefs.user not in (None, 'undefined_user', 'undefined', '',) %}
 
   {% if grains.os == 'MacOS' %}
 clion-desktop-shortcut-clean:
@@ -33,7 +33,7 @@ clion-desktop-shortcut-add:
     - name: {{ clion.homes }}/{{ clion.prefs.user }}/Desktop/clion{{ clion.jetbrains.edition }}.desktop
     - user: {{ clion.prefs.user }}
     - makedirs: True
-      {% if salt['grains.get']('os_family') in ('Suse') %} 
+      {% if salt['grains.get']('os_family') in ('Suse',) %} 
     - group: users
       {% else %}
     - group: {{ clion.prefs.user }}
@@ -58,9 +58,9 @@ clion-prefs-importfile:
     - source: {{ clion.prefs.jardir }}/{{ clion.prefs.jarfile }}
     - user: {{ clion.prefs.user }}
     - makedirs: True
-        {% if grains.os_family in ('Suse') %}
+        {% if grains.os_family in ('Suse',) %}
     - group: users
-        {% elif grains.os not in ('MacOS') %}
+        {% elif grains.os not in ('MacOS',) %}
         #inherit Darwin ownership
     - group: {{ clion.prefs.user }}
         {% endif %}

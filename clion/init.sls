@@ -11,7 +11,7 @@ clion-extract-dirs:
   file.directory:
     - names:
       - '{{ clion.tmpdir }}'
-{% if grains.os not in ('MacOS', 'Windows') %}
+{% if grains.os not in ('MacOS', 'Windows',) %}
       - '{{ clion.jetbrains.realhome }}'
     - user: root
     - group: root
@@ -33,7 +33,7 @@ clion-download-archive:
 {%- if clion.dl.src_hashsum %}
    # Check local archive using hashstring for older Salt / MacOS.
    # (see https://github.com/saltstack/salt/pull/41914).
-  {%- if grains['saltversioninfo'] <= [2016, 11, 6] or grains.os in ('MacOS') %}
+  {%- if grains['saltversioninfo'] <= [2016, 11, 6] or grains.os in ('MacOS',) %}
 clion-check-archive-hash:
    module.run:
      - name: file.check_hash
@@ -83,9 +83,9 @@ clion-remove-archive:
   file.absent:
     - name: '{{ clion.tmpdir }}'
     - onchanges:
-{%- if grains.os in ('Windows') %}
+{%- if grains.os in ('Windows',) %}
       - pkg: clion-package-install
-{%- elif grains.os in ('MacOS') %}
+{%- elif grains.os in ('MacOS',) %}
       - macpackage: clion-package-install
 {% else %}
       #Unix
