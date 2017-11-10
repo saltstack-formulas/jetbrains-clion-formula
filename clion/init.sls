@@ -18,6 +18,7 @@ clion-extract-dirs:
     - mode: 755
 {% endif %}
     - makedirs: True
+    - clean: True
     - require_in:
       - clion-download-archive
 
