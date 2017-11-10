@@ -1,7 +1,7 @@
 #Default Look Dictionary
 
 clion:
-  prefix: /usr/lib/jetbrains
+  prefix: /usr/local/jetbrains
   tmpdir: /tmp/jetbrainstmp
   command: /bin/clion.sh
   homes: /home
