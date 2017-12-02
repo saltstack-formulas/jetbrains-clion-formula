@@ -1,5 +1,5 @@
 ========
-clion
+jetbrains clion
 ========
 
 Formula for latest clion IDE from Jetbrains.
@@ -8,6 +8,7 @@ Formula for latest clion IDE from Jetbrains.
 
     See the full `Salt Formulas installation and usage instructions
     <http://docs.saltstack.com/en/latest/topics/development/conventions/formulas.html>`_.
+    Refer to pillar.example and defaults.yaml for configurable values. Tested on Linux (Ubuntu, Fedora, Arch, and Suse), MacOS. Not verified on Windows OS.
     
 Available states
 ================
@@ -36,5 +37,3 @@ On Linux, the PATH is set for all system users by adding software profile to /et
 
 Enable Debian alternatives by setting nonzero 'altpriority' pillar value; otherwise feature is disabled.
 
-Please see the pillar.example for configuration.
-Tested on Linux (Ubuntu, Fedora, Arch, and Suse), MacOS. Not verified on Windows OS.
