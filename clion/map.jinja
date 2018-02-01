@@ -5,6 +5,8 @@
 
 {% import_yaml 'clion/defaults.yaml' as defs %}
 {% set osmap = salt['grains.filter_by']({
+        'default':{
+        },
 
         'MacOS':  { 'prefix' : '/Applications/CLion',
                     'homes'  : '/Users',
@@ -21,6 +23,12 @@
 ) %}
 {% do defs.clion.update(osmap) %}
 {% set ide = salt['pillar.get']( 'clion', default=defs.clion, merge=True) %}
+
+# Get user's group name from pillar or 'id' command
+{%- if not ide.prefs.group %}
+  {%- set usergroup = salt['cmd.run']('id -gn', runas=ide.prefs.user, output_loglevel='quiet',) or None %}
+  {%- do ide.prefs.update({'group': usergroup,}) %}
+{% endif %}
 
 # Get dynamic release metadata
 {%- set pcode = pcode ~ ide.jetbrains.edition %}
