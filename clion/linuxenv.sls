@@ -21,9 +21,8 @@ clion-config:
     - context:
       home: '{{ clion.jetbrains.home }}/clion'
 
-  # Debian alternatives
-  {% if clion.linux.altpriority > 0 %}
-     {% if grains.os_family not in ('Arch',) %}
+  # Linux alternatives
+  {% if clion.linux.altpriority > 0 and grains.os_family not in ('Arch',) %}
 
 # Add clion-home to alternatives system
 clion-home-alt-install:
@@ -35,12 +34,12 @@ clion-home-alt-install:
 
 clion-home-alt-set:
   alternatives.set:
-    - name: clionhome
+    - name: clion-home
     - path: {{ clion.jetbrains.realhome }}
     - onchanges:
       - alternatives: clion-home-alt-install
 
-# Add intelli to alternatives system
+# Add to alternatives system
 clion-alt-install:
   alternatives.install:
     - name: clion
@@ -58,7 +57,6 @@ clion-alt-set:
     - onchanges:
       - alternatives: clion-alt-install
 
-      {% endif %}
   {% endif %}
 
 {% endif %}
