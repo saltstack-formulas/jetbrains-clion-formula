@@ -12,7 +12,7 @@ clion:
     uri: https://data.services.jetbrains.com/products/releases?latest=true&code=
     #See https://www.jetbrains.com/help/clion/meet-clion.html
     #Default is clion
-    product: CL 
+    product: CL
     edition:
 
   dl:
@@ -28,6 +28,11 @@ clion:
     symlink: /usr/bin/clion
     #debian alternatives is disabled by default. Activated via pillar value.
     altpriority: 0
+
+    #On freedesktop.org-compliant desktops, enable Icon on Linux launchers.
+    #Place a .desktop file in e.g. /usr/share/applications
+    install_desktop_file: True
+    desktop_file: /usr/share/applications/clion.desktop
 
   prefs:
     user:
