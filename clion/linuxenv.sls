@@ -61,4 +61,17 @@ clion-alt-set:
       {% endif %}
   {% endif %}
 
+  {% if clion.linux.install_desktop_file %}
+clion-global-desktop-file:
+  file.managed:
+    - name: {{ clion.linux.desktop_file }}
+    - source: salt://clion/files/clion.desktop
+    - template: jinja
+    - context:
+      home: {{ clion.jetbrains.realhome }}
+      command: {{ clion.command }}
+      edition: {{ clion.jetbrains.edition }}
+    - onlyif: test -f {{ clion.jetbrains.realhome }}/{{ clion.command }}
+  {% endif %}
+
 {% endif %}
