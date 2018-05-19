@@ -1,15 +1,14 @@
 ========
-jetbrains clion
+jetbrains-clion
 ========
 
-Formula for latest clion IDE from Jetbrains.
+Formula for CLION IDE from Jetbrains. Standard edition. For Linux and MacOS.
 
 .. note::
 
     See the full `Salt Formulas installation and usage instructions
     <http://docs.saltstack.com/en/latest/topics/development/conventions/formulas.html>`_.
-    Refer to pillar.example and defaults.yaml for configurable values. Tested on Linux (Ubuntu, Fedora, Arch, and Suse), MacOS. Not verified on Windows OS.
-    
+
 Available states
 ================
 
@@ -18,22 +17,24 @@ Available states
 
 ``clion``
 ------------
-Downloads the archive from Jetbrains website, unpacks locally and installs to the Operating System.
+
+Downloads, and unpacks, the archive from Jetbrains website and installs IDE to the Operating System.
 
 .. note::
 
-This formula automatically installs latest Jetbrains release. This behaviour may be overridden by pillars.
+    The latest available release will always get installed.
+
 
 ``clion.developer``
 ------------
-Create Desktop shortcuts. Optionally retrieve setttings file from url/share and save to 'user' (pillar) home directory.
+Create Desktop shortcuts. Optional shared preference file handling.
 
 
 ``clion.linuxenv``
 ------------
-On Linux, the PATH is set for all system users by adding software profile to /etc/profile.d/ directory. Full support for debian alternatives in supported Linux distributions (i.e. not Archlinux).
+On Linux, the PATH is set for all system users by adding software profile to /etc/profile.d/ directory. Full support for alternatives on supported Linux distributions (i.e. not Archlinux derivatives).
 
 .. note::
 
-Enable Debian alternatives by setting nonzero 'altpriority' pillar value; otherwise feature is disabled.
+    Enable alternatives system by setting nonzero 'altpriority' pillar value; otherwise feature is disabled.
 
