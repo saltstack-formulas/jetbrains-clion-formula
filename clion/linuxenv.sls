@@ -31,6 +31,9 @@ clion-home-alt-install:
     - link: '{{ clion.jetbrains.home }}/clion'
     - path: '{{ clion.jetbrains.realhome }}'
     - priority: {{ clion.linux.altpriority }}
+    - retry:
+        attempts: 2
+        until: True
 
 clion-home-alt-set:
   alternatives.set:
@@ -38,6 +41,9 @@ clion-home-alt-set:
     - path: {{ clion.jetbrains.realhome }}
     - onchanges:
       - alternatives: clion-home-alt-install
+    - retry:
+        attempts: 2
+        until: True
 
 # Add to alternatives system
 clion-alt-install:
@@ -49,6 +55,9 @@ clion-alt-install:
     - require:
       - alternatives: clion-home-alt-install
       - alternatives: clion-home-alt-set
+    - retry:
+        attempts: 2
+        until: True
 
 clion-alt-set:
   alternatives.set:
@@ -56,6 +65,9 @@ clion-alt-set:
     - path: {{ clion.jetbrains.realcmd }}
     - onchanges:
       - alternatives: clion-alt-install
+    - retry:
+        attempts: 2
+        until: True
 
   {% endif %}
 
