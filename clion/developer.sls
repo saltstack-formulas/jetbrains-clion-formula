@@ -16,9 +16,9 @@ clion-desktop-shortcut-add:
     - mode: 755
     - template: jinja
     - context:
-      user: {{ clion.prefs.user }}
-      homes: {{ clion.homes }}
-      edition: {{ clion.jetbrains.edition }}
+      user: {{ clion.prefs.user|json }}
+      homes: {{ clion.homes|json }}
+      edition: {{ clion.jetbrains.edition|json }}
     - onlyif: test "`uname`" = "Darwin"
   cmd.run:
     - name: /tmp/mac_shortcut.sh {{ clion.jetbrains.edition }}
@@ -43,7 +43,7 @@ clion-desktop-shortcut-install
     - template: jinja
     - onlyif: test -f {{ clion.jetbrains.realcmd }}
     - context:
-      home: {{ clion.jetbrains.realhome }}
+      home: {{ clion.jetbrains.realhome|json }}
       command: {{ clion.command }}
 
 
@@ -66,7 +66,6 @@ clion-prefs-importfile:
     - runas: {{ clion.prefs.user }}
     - if_missing: {{ clion.homes }}/{{ clion.prefs.user }}/{{ clion.prefs.jarfile }}
   {% endif %}
-
 
 {% endif %}
 
