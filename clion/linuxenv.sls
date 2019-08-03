@@ -19,7 +19,7 @@ clion-config:
     - user: root
     - group: root
     - context:
-      home: '{{ clion.jetbrains.home }}/clion'
+      home: '{{ clion.jetbrains.home|json }}/clion'
 
   # Linux alternatives
   {% if clion.linux.altpriority > 0 and grains.os_family not in ('Arch',) %}
@@ -78,9 +78,9 @@ clion-global-desktop-file:
     - source: salt://clion/files/clion.desktop
     - template: jinja
     - context:
-      home: {{ clion.jetbrains.realhome }}
-      command: {{ clion.command }}
-      edition: {{ clion.jetbrains.edition }}
+      home: {{ clion.jetbrains.realhome|json }}
+      command: {{ clion.command|json }}
+      edition: {{ clion.jetbrains.edition|json }}
     - onlyif: test -f {{ clion.jetbrains.realhome }}/{{ clion.command }}
   {% endif %}
 
