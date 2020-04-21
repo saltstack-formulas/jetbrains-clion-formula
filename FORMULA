@@ -1,8 +1,9 @@
-name: CLion
-os: gnu-linux, MacOS, Windows
-os_family: RedHat, Debian, Suse, FreeBSD, Archlinux, MacOS
-version: 201710
+name: clion
+os: Debian, Ubuntu, Raspbian, RedHat, Fedora, CentOS, Amazon, Suse, openSUSE, Gentoo, Funtoo, Arch, Manjaro, Alpine, FreeBSD, OpenBSD, Solaris, SmartOS, Windows, MacOS
+os_family: Debian, RedHat, Suse, Gentoo, Arch, Alpine, FreeBSD, OpenBSD, Solaris, Windows, MacOS
+version: 0.14.0
 release: 1
-minimum_version: 2016.3
-summary: Formula for installing Jetbrains CLion
-description: Formula for installing Jetbrains Clion IDE for C/C++ developers
+minimum_version: 2016.11
+summary: clion formula
+description: Formula to install clion and configure it.
+top_level_dir: clion
