@@ -9,7 +9,7 @@ clion:
   version: latest
 
   command: /bin/clion.sh
-  config_file: None
+  config_file: null
   config: {}
   environ_file: /etc/default/clion.sh
   environ: []
@@ -25,11 +25,11 @@ clion:
     repo: {}
     suffix: tar.gz
     macapp:
-      path: None
+      path: null
     archive:
-      path: None
+      path: null
       uri: 'https://data.services.jetbrains.com/products/releases?latest=true&code='
-      source_hash: None
+      source_hash: null
       enforce_toplevel: false
       trim_output: true
       options: '--strip-components=1'
