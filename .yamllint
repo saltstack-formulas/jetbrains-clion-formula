@@ -13,8 +13,6 @@ ignore: |
   test/**/states/**/*.sls
   .kitchen/
   clion/osfamilymap.yaml
-  clion/files/default/shortcut.desktop.jinja
-  pillar.example
 
 yaml-files:
   # Default settings

@@ -1,7 +1,7 @@
 .. _readme:
 
 clion-formula
-============
+=============
 
 |img_travis| |img_sr|
 
@@ -54,7 +54,7 @@ Available states
    :local:
 
 ``clion``
-^^^^^^^^^^
+^^^^^^^
 
 *Meta-state (This is a state that includes other states)*.
 
@@ -63,28 +63,28 @@ manages Clion configuration file and then
 configures the development environment.
 
 ``clion.archive``
-^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^
 
 This state will install Clion from archive only.
 
 ``clion.macapp``
-^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^
 
 This state will install Clion from source only.
 
 ``clion.config``
-^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^
 
 This state will configure npmrc and/or environment and has a dependency on ``clion.install``
 via include list.
 
 ``clion.linuxenv``
-^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^
 
 This state will install some Clion linux-alternatives on GNU/Linux.
 
 ``clion.clean``
-^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^
 
 *Meta-state (This is a state that includes other states)*.
 
@@ -93,25 +93,25 @@ removes the configuration file and
 then uninstalls the package.
 
 ``clion.config.clean``
-^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^
 
 This state will remove the configuration of Clion and has a
 dependency on ``clion.package.clean`` via include list.
 
 ``clion.archive.clean``
-^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
 
 This state will remove Clion package and has a dependency on
 ``clion.config.clean`` via include list.
 
 ``clion.macapp.clean``
-^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^
 
 This state will remove Clion package and has a dependency on
 ``clion.config.clean`` via include list.
 
 ``clion.linuxenv.clean``
-^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
 
 This state will remove Clion linux-alternatives on GNU/Linux.
 
