@@ -13,7 +13,7 @@ include:
 
     {%- else %}
 
-clion-not-available-to-install:
+clion-not-available-to-clean:
   test.show_notification:
     - text: |
         The clion package is unavailable for {{ salt['grains.get']('finger', grains.os_family) }}
