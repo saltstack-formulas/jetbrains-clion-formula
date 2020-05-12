@@ -17,6 +17,7 @@ clion-formula
 Formula to install Clion on GNU/Linux and MacOS.
 
 .. contents:: **Table of Contents**
+   :depth: 1
 
 General notes
 -------------
