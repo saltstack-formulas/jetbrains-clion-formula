@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.0.1](https://github.com/saltstack-formulas/jetbrains-clion-formula/compare/v1.0.0...v1.0.1) (2020-06-15)
+
+
+### Bug Fixes
+
+* **edition:** better edition jinja code ([3a6f3ba](https://github.com/saltstack-formulas/jetbrains-clion-formula/commit/3a6f3bac8f0027eea350a1fc04776aedad242674))
+
+
+### Documentation
+
+* **readme:** updated formatting ([a352da9](https://github.com/saltstack-formulas/jetbrains-clion-formula/commit/a352da9407d9f2971f1b0417fd4f909201e7254f))
+
 # [1.0.0](https://github.com/saltstack-formulas/jetbrains-clion-formula/compare/v0.1.0...v1.0.0) (2020-06-01)
 
 
