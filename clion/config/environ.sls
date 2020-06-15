@@ -28,7 +28,7 @@ clion-config-file-file-managed-environ_file:
     - template: jinja
     - context:
               {%- if clion.pkg.use_upstream_macapp %}
-        path: '/Applications/{{ clion.pkg.name }}{{ '\ %sE'|format(clion.edition) }}.app/Contents/MacOS'
+        path: '/Applications/{{ clion.pkg.name }}{{ '' if 'edition' not in clion else '\ %sE'|format(clion.edition) }}.app/Contents/MacOS'   # noqa 204
               {%- else %}
         path: {{ clion.pkg.archive.path }}/bin
               {%- endif %}

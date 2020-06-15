@@ -28,7 +28,7 @@ clion-config-file-file-managed-desktop-shortcut_file:
     - template: jinja
     - context:
         appname: {{ clion.pkg.name }}
-        edition: {{ clion.edition|json }}
+        edition: {{ '' if 'edition' not in clion else clion.edition|json }}
         command: {{ clion.command|json }}
               {%- if clion.pkg.use_upstream_macapp %}
         path: {{ clion.pkg.macapp.path }}

@@ -9,4 +9,4 @@ clion-package-archive-clean-file-absent:
   file.absent:
     - names:
       - {{ clion.pkg.archive.path }}
-      - /usr/local/jetbrains/clion-{{ clion.edition }}-*
+      - /usr/local/jetbrains/clion-*
