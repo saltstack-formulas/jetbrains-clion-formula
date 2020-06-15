@@ -10,7 +10,7 @@ clion-macos-app-clean-files:
   file.absent:
     - names:
       - {{ clion.dir.tmp }}
-      - /Applications/{{ clion.pkg.name }}{{ ' %sE'|format(clion.edition) if clion.edition else '' }}.app
+      - /Applications/{{ clion.pkg.name }}{{ '' if not edition else ' %sE'|format(edition) }}.app
 
     {%- else %}
 

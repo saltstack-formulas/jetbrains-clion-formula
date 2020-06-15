@@ -55,7 +55,7 @@ clion-macos-app-install-macpackage:
     - template: jinja
     - context:
       appname: {{ clion.pkg.name }}
-      edition: {{ clion.edition }}
+      edition: {{ '' if 'edition' not in clion else clion.edition }}
       user: {{ clion.identity.user }}
       homes: {{ clion.dir.homes }}
   cmd.run:

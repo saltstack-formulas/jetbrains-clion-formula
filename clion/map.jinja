@@ -15,24 +15,28 @@
       )
     )
 %}
-{%- set clion = salt['grains.filter_by']( {'defaults': defaults}, default='defaults', merge=_config) %}
+{%- set c = salt['grains.filter_by']( {'defaults': defaults}, default='defaults', merge=_config) %}
 
-{%- set pcode = clion.product ~ clion.edition if clion.edition else clion.product %}
-{%- set jdata = salt['cmd.run']('curl -s -L {0}{1}'.format(clion.pkg.archive.uri, pcode))|load_yaml %}
-{%- do clion.update({ 'version': jdata[ pcode ][0]['version'] }) %}
+{%- set edition = '' if 'edition' not in c else c.edition %}
+{%- set pcode = c.product ~ edition %}
+{%- set jdata = salt['cmd.run']('curl -s -L {0}{1}'.format(c.pkg.archive.uri, pcode))|load_yaml %}
+{%- do c.update({ 'version': jdata[ pcode ][0]['version'] }) %}
 
-{%- set dirname = 'clion-%s-%s'|format( clion.edition if clion.edition else '', clion.version) %}
-{%- set url = jdata[ pcode ][0]['downloads'][ clion.flavour ]['link'] %}
-{%- set hash  = salt['cmd.run']('curl -L -s {0}'.format( jdata[ pcode ][0]['downloads'][ clion.flavour ]['checksumLink'])).split(' ')[0] %}  # noqa 204
+{%- set dirname = 'c-%s-%s'|format( edition, c.version) %}
+{%- set url = jdata[ pcode ][0]['downloads'][ c.flavour ]['link'] %}
+{%- set hash  = salt['cmd.run']('curl -L -s {0}'.format( jdata[ pcode ][0]['downloads'][ c.flavour ]['checksumLink'])).split(' ')[0] %}  # noqa 204
 
-{%- if clion.pkg.use_upstream_archive %}
-       {%- do clion.pkg.archive.update({'name': clion.dir.archive ~ '/' ~ dirname,
-                                           'path': clion.dir.archive ~ '/' ~ dirname,
-                                           'source': url,
-                                           'source_hash': hash }) %}
+{%- if c.pkg.use_upstream_archive %}
+    {%- do c.pkg.archive.update({'name': c.dir.archive ~ '/' ~ dirname,
+                                 'path': c.dir.archive ~ '/' ~ dirname,
+                                 'source': url,
+                                 'source_hash': hash }) %}
+{%- endif %}
+{%- if c.pkg.use_upstream_macapp %}
+    {%- do c.pkg.macapp.update({'name': '/Applications',
+                                'path': '/Applications',
+                                'source': url,
+                                'source_hash': hash }) %}
 {%- endif %}
 
-{%- if clion.pkg.use_upstream_macapp %}
-       {%- do clion.pkg.macapp.update({
-              'name': '/Applications', 'path': '/Applications', 'source': url, 'source_hash': hash }) %}
-{%- endif %}
+{%- set clion = c %}
