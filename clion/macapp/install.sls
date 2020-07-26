@@ -14,7 +14,7 @@ clion-macos-app-install-curl:
   pkg.installed:
     - name: curl
   cmd.run:
-    - name: curl -Lo {{ clion.dir.tmp }}/clion-{{ clion.version }} {{ clion.pkg.macapp.source }}
+    - name: curl -Lo {{ clion.dir.tmp }}/clion-{{ clion.version }} "{{ clion.pkg.macapp.source }}"
     - unless: test -f {{ clion.dir.tmp }}/clion-{{ clion.version }}
     - require:
       - file: clion-macos-app-install-curl
