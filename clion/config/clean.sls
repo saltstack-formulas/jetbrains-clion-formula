@@ -26,7 +26,7 @@ clion-config-clean-file-absent:
                {%- if grains.kernel|lower == 'linux' %}
       - {{ clion.linux.desktop_file }}
                {%- elif grains.os == 'MacOS' %}
-      - {{ clion.dir.homes }}/{{ clion.identity.user }}/Desktop/{{ clion.pkg.name }}{{ '' if 'edition' not in clion else ' %sE'|format(clion.edition) }}  # noqa 204
+      - {{ clion.dir.homes }}/{{ clion.identity.user }}/Desktop/{{ clion.pkg.name }}*{{ clion.edition }}*
                {%- endif %}
     - require:
       - sls: {{ sls_package_clean }}

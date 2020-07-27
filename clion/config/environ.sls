@@ -27,11 +27,13 @@ clion-config-file-file-managed-environ_file:
     - makedirs: True
     - template: jinja
     - context:
-              {%- if clion.pkg.use_upstream_macapp %}
-        path: '/Applications/{{ clion.pkg.name }}{{ '' if 'edition' not in clion else '\ %sE'|format(clion.edition) }}.app/Contents/MacOS'   # noqa 204
-              {%- else %}
-        path: {{ clion.pkg.archive.path }}/bin
-              {%- endif %}
-        environ: {{ clion.environ|json }}
+      environ: {{ clion.environ|json }}
+                      {%- if clion.pkg.use_upstream_macapp %}
+      edition:  {{ '' if not clion.edition else ' %sE'|format(clion.edition) }}.app/Contents/MacOS
+      appname: {{ clion.dir.path }}/{{ clion.pkg.name }}
+                      {%- else %}
+      edition: ''
+      appname: {{ clion.dir.path }}/bin
+                      {%- endif %}
     - require:
       - sls: {{ sls_package_install }}

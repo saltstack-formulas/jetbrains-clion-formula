@@ -5,12 +5,12 @@
 {%- from tplroot ~ "/map.jinja" import clion with context %}
 {%- from tplroot ~ "/libtofs.jinja" import files_switch with context %}
 
-{%- if clion.linux.install_desktop_file and grains.os not in ('MacOS',) %}
-       {%- if clion.pkg.use_upstream_macapp %}
-           {%- set sls_package_install = tplroot ~ '.macapp.install' %}
-       {%- else %}
-           {%- set sls_package_install = tplroot ~ '.archive.install' %}
-       {%- endif %}
+{%- if clion.linux.install_desktop_file %}
+    {%- if clion.pkg.use_upstream_macapp %}
+        {%- set sls_package_install = tplroot ~ '.macapp.install' %}
+    {%- else %}
+        {%- set sls_package_install = tplroot ~ '.archive.install' %}
+    {%- endif %}
 
 include:
   - {{ sls_package_install }}
@@ -27,16 +27,15 @@ clion-config-file-file-managed-desktop-shortcut_file:
     - makedirs: True
     - template: jinja
     - context:
-        appname: {{ clion.pkg.name }}
-        edition: {{ '' if 'edition' not in clion else clion.edition|json }}
-        command: {{ clion.command|json }}
-              {%- if clion.pkg.use_upstream_macapp %}
-        path: {{ clion.pkg.macapp.path }}
-    - onlyif: test -f "{{ clion.pkg.macapp.path }}/{{ clion.command }}"
-              {%- else %}
-        path: {{ clion.pkg.archive.path }}
-    - onlyif: test -f {{ clion.pkg.archive.path }}/{{ clion.command }}
-              {%- endif %}
+      command: {{ clion.command|json }}
+                        {%- if grains.os == 'MacOS' %}
+      edition: {{ '' if 'edition' not in clion else clion.edition|json }}
+      appname: {{ clion.dir.path }}/{{ clion.pkg.name }}
+                        {%- else %}
+      edition: ''
+      appname: {{ clion.dir.path }}
+    - onlyif: test -f "{{ clion.dir.path }}/{{ clion.command }}"
+                        {%- endif %}
     - require:
       - sls: {{ sls_package_install }}
 

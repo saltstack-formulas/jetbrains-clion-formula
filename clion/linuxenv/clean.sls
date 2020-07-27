@@ -11,21 +11,21 @@ clion-linuxenv-home-file-absent:
   file.absent:
     - names:
       - /opt/clion
-      - {{ clion.pkg.archive.path }}
+      - {{ clion.dir.path }}
 
         {% if clion.linux.altpriority|int > 0 and grains.os_family not in ('Arch',) %}
 
 clion-linuxenv-home-alternatives-clean:
   alternatives.remove:
     - name: clionhome
-    - path: {{ clion.pkg.archive.path }}
+    - path: {{ clion.dir.path }}
     - onlyif: update-alternatives --get-selections |grep ^clionhome
 
 
 clion-linuxenv-executable-alternatives-clean:
   alternatives.remove:
     - name: clion
-    - path: {{ clion.pkg.archive.path }}/clion
+    - path: {{ clion.dir.path }}/{{ clion.command }}
     - onlyif: update-alternatives --get-selections |grep ^clion
 
         {%- else %}

@@ -11,7 +11,8 @@ clion-package-archive-install:
     - require_in:
       - file: clion-package-archive-install
   file.directory:
-    - name: {{ clion.pkg.archive.path }}
+    - unless: {{ grains.os == 'MacOS' }}
+    - name: {{ clion.dir.path }}
     - user: {{ clion.identity.rootuser }}
     - group: {{ clion.identity.rootgroup }}
     - mode: 755
@@ -38,8 +39,8 @@ clion-package-archive-install:
 
 clion-archive-install-file-symlink-clion:
   file.symlink:
-    - name: /usr/local/bin/clion
-    - target: {{ clion.pkg.archive.path }}/{{ clion.command }}
+    - name: /usr/local/bin/{{ clion.command }}
+    - target: {{ clion.dir.path }}/{{ clion.command }}
     - force: True
     - onlyif: {{ grains.kernel|lower != 'windows' }}
     - require:

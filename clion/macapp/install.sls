@@ -49,17 +49,21 @@ clion-macos-app-install-macpackage:
     - onchanges:
       - cmd: clion-macos-app-install-curl
   file.managed:
-    - name: /tmp/mac_shortcut.sh
-    - source: salt://clion/files/mac_shortcut.sh
+    - name: /tmp/mac_shortcut.sh.jinja
+    - source: salt://clion/files/mac_shortcut.sh.jinja
     - mode: 755
     - template: jinja
     - context:
-      appname: {{ clion.pkg.name }}
-      edition: {{ '' if 'edition' not in clion else clion.edition }}
+      appname: {{ clion.dir.path }}/{{ clion.pkg.name }}
+      edition: {{ '' if not clion.edition else ' %sE'|format(clion.edition) }}
       user: {{ clion.identity.user }}
       homes: {{ clion.dir.homes }}
+    - require:
+      - macpackage: clion-macos-app-install-macpackage
+    - onchanges:
+      - macpackage: clion-macos-app-install-macpackage
   cmd.run:
-    - name: /tmp/mac_shortcut.sh
+    - name: /tmp/mac_shortcut.sh.jinja
     - runas: {{ clion.identity.user }}
     - require:
       - file: clion-macos-app-install-macpackage
