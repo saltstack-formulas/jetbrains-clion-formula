@@ -5,7 +5,7 @@
 {%- from tplroot ~ "/map.jinja" import clion with context %}
 {%- from tplroot ~ "/libtofs.jinja" import files_switch with context %}
 
-{%- if clion.linux.install_desktop_file %}
+{%- if clion.shortcut.file %}
     {%- if clion.pkg.use_upstream_macapp %}
         {%- set sls_package_install = tplroot ~ '.macapp.install' %}
     {%- else %}
@@ -17,7 +17,7 @@ include:
 
 clion-config-file-file-managed-desktop-shortcut_file:
   file.managed:
-    - name: {{ clion.linux.desktop_file }}
+    - name: {{ clion.shortcut.file }}
     - source: {{ files_switch(['shortcut.desktop.jinja'],
                               lookup='clion-config-file-file-managed-desktop-shortcut_file'
                  )

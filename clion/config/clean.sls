@@ -24,7 +24,7 @@ clion-config-clean-file-absent:
       - {{ clion.environ_file }}
                {%- endif %}
                {%- if grains.kernel|lower == 'linux' %}
-      - {{ clion.linux.desktop_file }}
+      - {{ clion.shortcut.file }}
                {%- elif grains.os == 'MacOS' %}
       - {{ clion.dir.homes }}/{{ clion.identity.user }}/Desktop/{{ clion.pkg.name }}*{{ clion.edition }}*
                {%- endif %}
