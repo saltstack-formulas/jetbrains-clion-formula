@@ -10,7 +10,11 @@ clion-macos-app-clean-files:
   file.absent:
     - names:
       - {{ clion.dir.tmp }}
-      - /Applications/{{ clion.pkg.name }}{{ '' if not edition else ' %sE'|format(edition) }}.app
+                  {%- if grains.os == 'MacOS' %}
+      - {{ clion.dir.path }}/{{ clion.pkg.name }}*{{ clion.edition }}*.app
+                  {%- else %}
+      - {{ clion.dir.path }}
+                  {%- endif %}
 
     {%- else %}
 

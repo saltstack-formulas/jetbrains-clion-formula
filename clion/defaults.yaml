@@ -24,17 +24,17 @@ clion:
       - gzip
     repo: {}
     suffix: tar.gz
-    macapp:
-      path: null
+    uri: 'https://data.services.jetbrains.com/products/releases?latest=true&code='
+    macapp: {}
     archive:
-      path: null
-      uri: 'https://data.services.jetbrains.com/products/releases?latest=true&code='
+      name: null
       source_hash: null
       enforce_toplevel: false
       trim_output: true
       options: '--strip-components=1'
 
   dir:
+    path: null
     archive: /usr/local/jetbrains
     homes: /home
     tmp: /tmp/jetbrains/clion
@@ -54,7 +54,9 @@ clion:
   linux:
     symlink: /usr/local/bin/clion
     altpriority: 0
+
+  shortcut:
     # On freedesktop.org-compliant desktops, enable Icon on Linux launchers.
     # Place a .desktop file in e.g. /usr/share/applications
-    install_desktop_file: true
-    desktop_file: /usr/share/applications/clion.desktop
+    install: true
+    file: /usr/share/applications/clion.desktop

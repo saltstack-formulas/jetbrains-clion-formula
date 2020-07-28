@@ -10,8 +10,8 @@
 clion-linuxenv-home-file-symlink:
   file.symlink:
     - name: /opt/clion
-    - target: {{ clion.pkg.archive.path }}
-    - onlyif: test -d '{{ clion.pkg.archive.path }}'
+    - target: {{ clion.dir.path }}
+    - onlyif: test -d '{{ clion.dir.path }}'
     - force: True
 
         {% if clion.linux.altpriority|int > 0 and grains.os_family not in ('Arch',) %}
@@ -20,14 +20,14 @@ clion-linuxenv-home-alternatives-install:
   alternatives.install:
     - name: clionhome
     - link: /opt/clion
-    - path: {{ clion.pkg.archive.path }}
+    - path: {{ clion.dir.path }}
     - priority: {{ clion.linux.altpriority }}
     - retry: {{ clion.retry_option|json }}
 
 clion-linuxenv-home-alternatives-set:
   alternatives.set:
     - name: clionhome
-    - path: {{ clion.pkg.archive.path }}
+    - path: {{ clion.dir.path }}
     - onchanges:
       - alternatives: clion-linuxenv-home-alternatives-install
     - retry: {{ clion.retry_option|json }}
@@ -36,7 +36,7 @@ clion-linuxenv-executable-alternatives-install:
   alternatives.install:
     - name: clion
     - link: {{ clion.linux.symlink }}
-    - path: {{ clion.pkg.archive.path }}/{{ clion.command }}
+    - path: {{ clion.dir.path }}/{{ clion.command }}
     - priority: {{ clion.linux.altpriority }}
     - require:
       - alternatives: clion-linuxenv-home-alternatives-install
@@ -46,7 +46,7 @@ clion-linuxenv-executable-alternatives-install:
 clion-linuxenv-executable-alternatives-set:
   alternatives.set:
     - name: clion
-    - path: {{ clion.pkg.archive.path }}/{{ clion.command }}
+    - path: {{ clion.dir.path }}/{{ clion.command }}
     - onchanges:
       - alternatives: clion-linuxenv-executable-alternatives-install
     - retry: {{ clion.retry_option|json }}

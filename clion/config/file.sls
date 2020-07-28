@@ -28,12 +28,7 @@ clion-config-file-managed-config_file:
     - makedirs: True
     - template: jinja
     - context:
-              {%- if clion.pkg.use_upstream_macapp %}
-        path: {{ clion.pkg.macapp.path }}
-              {%- else %}
-        path: {{ clion.pkg.archive.path }}
-              {%- endif %}
-        config: {{ clion.config|json }}
+      config: {{ clion.config|json }}
     - require:
       - sls: {{ sls_package_install }}
 
