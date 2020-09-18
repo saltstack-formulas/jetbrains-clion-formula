@@ -2,6 +2,7 @@
 # vim: ft=yaml
 ---
 clion:
+  flavour: linux  # linux (default), mac (default), windows (default), windowsZip
   environ:
     a: b
   pkg:
