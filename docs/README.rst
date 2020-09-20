@@ -14,7 +14,7 @@ clion-formula
    :scale: 100%
    :target: https://github.com/semantic-release/semantic-release
 
-Formula to install Clion on GNU/Linux and MacOS.
+Formula to install Clion on Windows, GNU/Linux and MacOS.
 
 .. contents:: **Table of Contents**
    :depth: 1

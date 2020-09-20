@@ -10,6 +10,7 @@
     {%- else %}
         {%- set sls_package_install = tplroot ~ '.archive.install' %}
     {%- endif %}
+    {%- if grains.os != 'Windows' %}
 
 include:
   - {{ sls_package_install }}
@@ -37,3 +38,5 @@ clion-config-file-file-managed-environ_file:
                       {%- endif %}
     - require:
       - sls: {{ sls_package_install }}
+
+    {%- endif %}
