@@ -2,6 +2,15 @@
 Changelog
 =========
 
+`1.1.0 <https://github.com/saltstack-formulas/jetbrains-clion-formula/compare/v1.0.2...v1.1.0>`_ (2020-09-20)
+-----------------------------------------------------------------------------------------------------------------
+
+Features
+^^^^^^^^
+
+
+* **windows:** basic windows support (\ `97bf061 <https://github.com/saltstack-formulas/jetbrains-clion-formula/commit/97bf061463b16937a8a8e932967cbd05cd0a2f72>`_\ )
+
 `1.0.2 <https://github.com/saltstack-formulas/jetbrains-clion-formula/compare/v1.0.1...v1.0.2>`_ (2020-07-28)
 -----------------------------------------------------------------------------------------------------------------
 
