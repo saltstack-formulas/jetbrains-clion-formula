@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.2.1](https://github.com/saltstack-formulas/jetbrains-clion-formula/compare/v1.2.0...v1.2.1) (2020-12-16)
+
+
+### Continuous Integration
+
+* **gitlab-ci:** use GitLab CI as Travis CI replacement ([73ad103](https://github.com/saltstack-formulas/jetbrains-clion-formula/commit/73ad103be423ee2c0014764bf5bb53f0542e4a59))
+* **pre-commit:** add to formula [skip ci] ([eb1db4c](https://github.com/saltstack-formulas/jetbrains-clion-formula/commit/eb1db4c44ff558fbb1ae0775862362b250068f22))
+* **pre-commit:** enable/disable `rstcheck` as relevant [skip ci] ([07ca3ba](https://github.com/saltstack-formulas/jetbrains-clion-formula/commit/07ca3bab316ede9a38ed8af23cdc4127ef9de5e7))
+* **pre-commit:** finalise `rstcheck` configuration [skip ci] ([9af63bf](https://github.com/saltstack-formulas/jetbrains-clion-formula/commit/9af63bf9f7caf280f366e147028b5e44aba01ea0))
+
+
+### Documentation
+
+* **readme:** fix `rstcheck` violation [skip ci] ([4dc41a1](https://github.com/saltstack-formulas/jetbrains-clion-formula/commit/4dc41a115c59c93e264eaaf14497a556a6f18a89)), closes [/travis-ci.org/github/myii/jetbrains-clion-formula/builds/731606938#L259](https://github.com//travis-ci.org/github/myii/jetbrains-clion-formula/builds/731606938/issues/L259)
+
 # [1.2.0](https://github.com/saltstack-formulas/jetbrains-clion-formula/compare/v1.1.0...v1.2.0) (2020-09-20)
 
 
